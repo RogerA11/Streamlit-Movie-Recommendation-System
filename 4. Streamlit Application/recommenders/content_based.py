@@ -78,8 +78,10 @@ def data_preprocessing(subset_size):
     #movies_df['input'] = movies_df['plot_keywords'].apply(lambda d: d if isinstance(d, list) else []) + \
     #                    movies_df['title_cast'].apply(lambda d: d if isinstance(d, list) else []) + movies_df['director'] + \
     #                    movies_df['genres']
-    movies_df['input'] = movies_df['plot_keywords'] + movies_df['title_cast'] + movies_df['director'] + movies_df['genres']
-    movies_df=movies_df.dropna(subset=['input'])
+    movies_df['input'] = movies_df['plot_keywords'].apply(lambda d: d if isinstance(d, list) else [])
+    movies_df['input'] = movies_df['title_cast'].apply(lambda d: d if isinstance(d, list) else [])
+    movies_df['input'] = movies_df['director'] + movies_df['genres']
+    movies_df = movies_df.dropna(subset=['input'])
     
     # Convert the features back into a string
     movies_df['input'] = movies_df['input'].apply(lambda x: ' '.join(x))
