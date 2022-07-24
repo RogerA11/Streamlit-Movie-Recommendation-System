@@ -58,28 +58,37 @@ def data_preprocessing(subset_size):
     
     movies_df['genres'] = movies_df['genres'].str.split('|')
 
+    # 1st change
+    movies_df['title']=movies_df['title'].str.split('(')
+    movies_df['Year']=movies_df['title'].str[1]
+    movies_df['title']=movies_df['title'].str[0]
+    movies_df['Year']=movies_df['Year'].str.replace(')','',regex=True)
+
     # Split cast and keywords and clean up data in imdb_data dataframe
     imdb_df = imdb
     imdb_df['title_cast'] = imdb_df['title_cast'].str.split('|')
     imdb_df['plot_keywords'] = imdb_df['plot_keywords'].str.split('|')
 
     # Merge the Dataframes
-    movies_df=imdb_df.merge(movies_df, on='movieId', how='right')
+    movies_df = imdb_df.merge(movies_df, on='movieId', how='right')
     movies_df['director'] = movies_df['director'].astype('str').apply(lambda x: str.lower(x.replace(" ", "")))
     movies_df['director'] = movies_df['director'].apply(lambda x: [x,x, x])
 
     # Create input features to use for our predictions
-    movies_df['input'] = movies_df['plot_keywords'].apply(lambda d: d if isinstance(d, list) else []) + \
-                        movies_df['title_cast'].apply(lambda d: d if isinstance(d, list) else []) + movies_df['director'] + \
-                        movies_df['genres']
+    #movies_df['input'] = movies_df['plot_keywords'].apply(lambda d: d if isinstance(d, list) else []) + \
+    #                    movies_df['title_cast'].apply(lambda d: d if isinstance(d, list) else []) + movies_df['director'] + \
+    #                    movies_df['genres']
+    movies_df['input'] = movies_df['plot_keywords'] + movies_df['title_cast'] + movies_df['director'] + movies_df['genres']
+    movies_df=movies_df.dropna(subset=['input'])
     
     # Convert the features back into a string
     movies_df['input'] = movies_df['input'].apply(lambda x: ' '.join(x))
     
     # Subset of the data
     movies_subset = movies_df.iloc[:subset_size, :]
+    
     return movies_subset
-
+    
 # !! DO NOT CHANGE THIS FUNCTION SIGNATURE !!
 # You are, however, encouraged to change its content.  
 def content_model(movie_list,top_n=10):
