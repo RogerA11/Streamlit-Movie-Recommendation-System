@@ -23,24 +23,26 @@
     ---------------------------------------------------------------------
 
     Description: Provided within this file is a baseline content-based
-    filtering algorithm for rating predictions on Movie data.
+    filtering algorithm for rating predictions on Movie merged_df.
 
 """
 
 # Script dependencies
+from heapq import merge
 import os
 import pandas as pd
 import numpy as np
+import functools as ft
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 
-# Importing data
-movies = pd.read_csv('resources/data/movies.csv', sep = ',')
-imdb = pd.read_csv('resources/data/imdb_data.csv')
+# import data
+movies = pd.read_csv('./resources/data/movies.csv', sep = ',')
+imdb = pd.read_csv('./resources/data/imdb_data.csv')
 movies = movies.dropna()
 
 def data_preprocessing(subset_size):
-    """Prepare data for use within Content filtering algorithm.
+    """Prepare merged_df for use within Content filtering algorithm.
 
     Parameters
     ----------
@@ -53,41 +55,40 @@ def data_preprocessing(subset_size):
         Subset of movies selected for content-based filtering.
 
     """
-    # Split year from title, split genres and clean up data in movies dataframe
-    movies_df = movies
+    # create merged_df
+    dfs = [movies, imdb]
+    merged_df = ft.reduce(lambda left, right: pd.merge(left, right, on='movieId'), dfs)
+
+    # fill in null values 
+    merged_df['title_cast'] = merged_df['title_cast'].fillna(merged_df['title_cast'].mode()[0])
+    merged_df['plot_keywords'] = merged_df['plot_keywords'].fillna(merged_df['plot_keywords'].mode()[0])
+    merged_df['director'] = merged_df['director'].fillna(merged_df['director'].mode()[0])
+
+    # data preprocessing
+    # clean title feature and create a new feature called year
+    merged_df['title'] = merged_df['title'].str.split('(')
+    merged_df['title'] = merged_df['title'].str[0]
+    merged_df['title'] = merged_df['title'].str.rstrip()
+    merged_df['year'] = merged_df['title'].str[1]
+    merged_df['year'] = merged_df['year'].str.replace(')','',regex=True)
+
+    # clean genres, title_cast and plot_keywords features
+    merged_df['genres'] = merged_df['genres'].str.split('|')
+    merged_df['title_cast'] = merged_df['title_cast'].str.split('|')
+    merged_df['plot_keywords'] = merged_df['plot_keywords'].str.split('|')
+
+    # prepare director feature
+    merged_df['director'] = merged_df['director'].astype('str').apply(lambda x: str.lower(x.replace(" ", "")))
+    merged_df['director'] = merged_df['director'].apply(lambda x: [x, x, x])
+
+    # create input feature by merging various features
+    input = merged_df['plot_keywords'] + merged_df['title_cast'] + merged_df['director'] + merged_df['genres']
+    merged_df['input'] = input
+    merged_df = merged_df.dropna(subset=['input'])
+    merged_df['input'] = merged_df['input'].apply(lambda x: ' '.join(x))
     
-    movies_df['genres'] = movies_df['genres'].str.split('|')
-
-    # 1st change
-    movies_df['title']=movies_df['title'].str.split('(')
-    movies_df['Year']=movies_df['title'].str[1]
-    movies_df['title']=movies_df['title'].str[0]
-    movies_df['Year']=movies_df['Year'].str.replace(')','',regex=True)
-
-    # Split cast and keywords and clean up data in imdb_data dataframe
-    imdb_df = imdb
-    imdb_df['title_cast'] = imdb_df['title_cast'].str.split('|')
-    imdb_df['plot_keywords'] = imdb_df['plot_keywords'].str.split('|')
-
-    # Merge the Dataframes
-    movies_df = imdb_df.merge(movies_df, on='movieId', how='right')
-    movies_df['director'] = movies_df['director'].astype('str').apply(lambda x: str.lower(x.replace(" ", "")))
-    movies_df['director'] = movies_df['director'].apply(lambda x: [x,x, x])
-
-    # Create input features to use for our predictions
-    #movies_df['input'] = movies_df['plot_keywords'].apply(lambda d: d if isinstance(d, list) else []) + \
-    #                    movies_df['title_cast'].apply(lambda d: d if isinstance(d, list) else []) + movies_df['director'] + \
-    #                    movies_df['genres']
-    movies_df['input'] = movies_df['plot_keywords'].apply(lambda d: d if isinstance(d, list) else [])
-    movies_df['input'] = movies_df['title_cast'].apply(lambda d: d if isinstance(d, list) else [])
-    movies_df['input'] = movies_df['director'] + movies_df['genres']
-    movies_df = movies_df.dropna(subset=['input'])
-    
-    # Convert the features back into a string
-    movies_df['input'] = movies_df['input'].apply(lambda x: ' '.join(x))
-    
-    # Subset of the data
-    movies_subset = movies_df.iloc[:subset_size, :]
+    # create movies_subset variable
+    movies_subset = merged_df.iloc[:subset_size, :]
     
     return movies_subset
     
@@ -112,12 +113,12 @@ def content_model(movie_list,top_n=10):
     """
     # Initializing the empty list of recommended movies
     recommended_movies = []
-    data = data_preprocessing(27000)
+    merged_df = data_preprocessing(14000)
 
     # Instantiating and generating the count matrix
-    count_vec = CountVectorizer(analyzer='word',ngram_range=(1, 2),min_df=0, stop_words='english')
-    count_matrix = count_vec.fit_transform(data['input'])
-    indices = pd.Series(data['title'])
+    count_vec = CountVectorizer(analyzer='word', ngram_range=(1, 2), min_df=0, stop_words='english')
+    count_matrix = count_vec.fit_transform(merged_df['input'])
+    indices = pd.Series(merged_df['title'])
     cosine_sim = cosine_similarity(count_matrix, count_matrix)
     
     # Getting the index of the movie that matches the title
@@ -148,4 +149,5 @@ def content_model(movie_list,top_n=10):
     top_indexes = np.setdiff1d(top_50_indexes,[idx_1,idx_2,idx_3])
     for i in top_indexes[:top_n]:
         recommended_movies.append(list(movies['title'])[i])
+
     return recommended_movies
