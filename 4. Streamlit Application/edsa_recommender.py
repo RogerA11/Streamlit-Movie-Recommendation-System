@@ -50,7 +50,7 @@ def main():
     # -------------------------------------------------------------------
     # ----------- !! THIS CODE MUST NOT BE ALTERED !! -------------------
     # -------------------------------------------------------------------
-    page_selection = st.sidebar.selectbox("Choose Option", page_options)
+    page_selection = st.sidebar.selectbox("Menu", page_options)
     if page_selection == "Recommender System":
         # Header contents
         st.write('# Movie Recommender Engine')
@@ -101,8 +101,22 @@ def main():
 
     # ------------- SAFE FOR ALTERING/EXTENSION -------------------
     if page_selection == "Solution Overview":
-        st.title("Solution Overview")
-        st.write("Describe your winning approach on this page")
+        st.image('resources/imgs/project_blackbox.jpeg',use_column_width=True)
+        st.write("## Solutions Overview")
+        st.write("In today’s technology driven world, recommender systems are socially and \
+        economically critical to ensure that individuals can make optimised choices \
+        surrounding the content they engage with on a daily basis. One application where \
+        this is especially true is movie recommendations; where intelligent algorithms can \
+        help viewers find great titles from tens of thousands of options.")
+        st.write("Recommender Systems are a type of information filtering system as they \
+        improve the quality of search results and provides items that are more relevant to \
+        the search item or are related to the search history of the user.")
+        st.write("Let's view a breakdown of these recommender systems as applied in **Project \
+        Blackbox** as providing an accurate and robust solutions to this challenge has immense \
+        economic potential, with consumers of the system being personalised recommendations - \
+        generating platform affinity for the streaming services which best facilitates their \
+        audience's viewing.")
+        st.image('resources/imgs/Recommender_systems.png',use_column_width=True)
 
     # You may want to add more sections here for aspects such as an EDA,
     # or to provide your business pitch.
