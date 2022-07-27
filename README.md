@@ -2,8 +2,8 @@
 #### EXPLORE Data Science Academy Unsupervised Predict
 
 #Project Blackbox
-![Project Blackbox Logo](1. Data/project_blackbox.jpeg)
-![Movie_Recommendations](resources/imgs/Image_header.png)
+![Project Blackbox Logo](https://github.com/RogerA11/TeamCBB5/blob/f8e8e7b3e10f58a4479ed1f97df894a505fdbaf0/1.%20Data/project_blackbox.jpeg)
+![Movie_Recommendations](https://github.com/RogerA11/TeamCBB5/blob/f8e8e7b3e10f58a4479ed1f97df894a505fdbaf0/4.%20Streamlit%20Application/resources/imgs/Image_header.png)
 
 In today’s technology driven world, recommender systems are socially and economically critical to ensure that individuals can make optimised choices surrounding the content they engage with on a daily basis. One application where this is especially true is movie recommendations; where intelligent algorithms can help viewers find great titles from tens of thousands of options.
 
