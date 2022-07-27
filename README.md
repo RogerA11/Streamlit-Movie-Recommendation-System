@@ -10,7 +10,7 @@ In today’s technology driven world, recommender systems are socially and econo
 In this scenario, a recommendation algorithm based on content or collaborative filtering that is capable of properly predicting a movie that a consumer will enjoy based on their historical preferences is critical..
 
 Providing an accurate and robust solutions to this challenge has immense economic potential, with consumers of the system being personalised recommendations - generating platform affinity for the streaming services which best facilitates their audience's viewing. See figure below to get a more in dept solution on these recommender systems
-![Recommender Systems](https://github.com/RogerA11/TeamCBB5/blob/a89b69df5b8551682b26c167a9aab475c3358867/4.%20Streamlit%20Application/resources/imgs/Recommender_systems.png)
+![Recommender Systems](https://github.com/RogerA11/TeamCBB5/blob/14f26000d04c22c97c5b8139adbb633a5a81b733/4.%20Streamlit%20Application/resources/imgs/Recommender_systems.png)
 
 ## Usage Instructions
 
