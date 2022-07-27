@@ -1,7 +1,7 @@
 # Streamlit-based Recommender System
 #### EXPLORE Data Science Academy Unsupervised Predict
 
-#Project Blackbox
+## Project Blackbox
 ![Project Blackbox Logo](https://github.com/RogerA11/TeamCBB5/blob/f8e8e7b3e10f58a4479ed1f97df894a505fdbaf0/1.%20Data/project_blackbox.jpeg)
 ![Movie_Recommendations](https://github.com/RogerA11/TeamCBB5/blob/f8e8e7b3e10f58a4479ed1f97df894a505fdbaf0/4.%20Streamlit%20Application/resources/imgs/Image_header.png)
 
