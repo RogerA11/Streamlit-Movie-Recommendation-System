@@ -56,8 +56,9 @@ def data_preprocessing(subset_size):
 
     """
     # create merged_df
-    dfs = [movies, imdb]
-    merged_df = ft.reduce(lambda left, right: pd.merge(left, right, on='movieId'), dfs)
+    # dfs = [movies, imdb]
+    # merged_df = ft.reduce(lambda left, right: pd.merge(left, right, on='movieId'), dfs)
+    merged_df = movies.merge(imdb, how='left', on='movieId')
 
     # fill in null values 
     merged_df['title_cast'] = merged_df['title_cast'].fillna(merged_df['title_cast'].mode()[0])
@@ -69,8 +70,8 @@ def data_preprocessing(subset_size):
     merged_df['title'] = merged_df['title'].str.split('(')
     merged_df['title'] = merged_df['title'].str[0]
     merged_df['title'] = merged_df['title'].str.rstrip()
-    merged_df['year'] = merged_df['title'].str[1]
-    merged_df['year'] = merged_df['year'].str.replace(')','',regex=True)
+    #merged_df['year'] = merged_df['title'].str[1]
+    #merged_df['year'] = merged_df['year'].str.replace(')','',regex=True)
 
     # clean genres, title_cast and plot_keywords features
     merged_df['genres'] = merged_df['genres'].str.split('|')
