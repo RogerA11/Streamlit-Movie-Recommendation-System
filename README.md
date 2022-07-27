@@ -10,7 +10,7 @@ In today’s technology driven world, recommender systems are socially and econo
 With this context, EDSA is challenging you to construct a recommendation algorithm based on content or collaborative filtering, capable of accurately predicting how a user will rate a movie they have not yet viewed, based on their historical preferences.
 
 Providing an accurate and robust solution to this challenge has immense economic potential, with users of the system being personalised recommendations - generating platform affinity for the streaming services which best facilitates their audience's viewing. See figure below adapted from [Kaggle](https://www.kaggle.com/competitions/edsa-movie-recommendation-2022/overview).
-![Recommender Systems](https://miro.medium.com/max/1000/1*rCK9VjrPgpHUvSNYw7qcuQ@2x.png)
+![Recommender Systems](https://static.observableusercontent.com/files/80ae6cf8ccb082c09784430b22545e429c1b31cf547e492da71a91b33d68448c1dbaf0c3a1693eab7bc44a148facfc95e78acd017053b69b80d9d3bc9cbcc38b)
 
 ## Usage Instructions
 
