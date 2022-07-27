@@ -114,7 +114,7 @@ def content_model(movie_list,top_n=10):
     """
     # Initializing the empty list of recommended movies
     recommended_movies = []
-    merged_df = data_preprocessing(14000)
+    merged_df = data_preprocessing(27000)
 
     # Instantiating and generating the count matrix
     count_vec = CountVectorizer(analyzer='word', ngram_range=(1, 2), min_df=0, stop_words='english')
