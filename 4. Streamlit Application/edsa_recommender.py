@@ -123,7 +123,7 @@ def main():
         st.image('resources/imgs/Recommender_systems.png',use_column_width=True)
 
     if page_selection == "Exploratory Data Analysis":
-        st.image('resources/imgs/project_blackbox.png',use_column_width=True)
+        st.image('resources/imgs/project_blackbox.jpeg',use_column_width=True)
         st.title("Exploratory Data Analysis")
         st.write("### Total Movies Released per Year")
         st.image('resources/imgs/yearly_released_movies_1.png',use_column_width=True)
