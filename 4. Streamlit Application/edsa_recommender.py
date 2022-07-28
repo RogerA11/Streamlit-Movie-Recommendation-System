@@ -49,7 +49,7 @@ def main():
 
     # DO NOT REMOVE the 'Recommender System' option below, however,
     # you are welcome to add more options to enrich your app.
-    page_options = ["Recommender System", "Solution Overview","Data Insights","About Us"]
+    page_options = ["Recommender System", "Solution Overview","Exploratory Data Analysis","About Us"]
 
     # -------------------------------------------------------------------
     # ----------- !! THIS CODE MUST NOT BE ALTERED !! -------------------
@@ -122,19 +122,20 @@ def main():
         audience's viewing.")
         st.image('resources/imgs/Recommender_systems.png',use_column_width=True)
 
-    if page_selection == "Data Insights":
-        st.image('resources/imgs/Recommender_systems.png',use_column_width=True)
+    if page_selection == "Exploratory Data Analysis":
+        st.image('resources/imgs/project_blackbox.png',use_column_width=True)
         st.title("Exploratory Data Analysis")
-        st.write("## Total Movies Released per Year")
+        st.write("### Total Movies Released per Year")
         st.image('resources/imgs/yearly_released_movies_1.png',use_column_width=True)
 
-        st.write("## Distribution of Movie Genres")
+
+        st.write("### Distribution of Movie Genres")
         st.image('resources/imgs/movie_genre_distribution.png',use_column_width=True)
 
-        st.write("## Top 10 Most Popular Movie Directors")
+        st.write("### Top 10 Most Popular Movie Directors")
         st.image('resources/imgs/popular_movie_directors.png',use_column_width=True)
 
-        st.write("## Solutions Overview")
+        st.write("## Insights")
 
         
     if page_selection == "About Us":
