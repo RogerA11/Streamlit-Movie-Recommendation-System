@@ -125,8 +125,10 @@ def main():
     if page_selection == "Exploratory Data Analysis":
         st.image('resources/imgs/project_blackbox.jpeg',use_column_width=True)
         st.title("Exploratory Data Analysis")
-        st.write('The three major feautures included in our Recommender System Algorithms: \
+        st.write('The three major features included in our Recommender System Algorithm: \
           \n  - Movie Year Release\n  - Movie Genre\n - Movie Director')
+        st.write('Displayed below you can view their respective visualization insights as well \
+          as a brief explanation thereof')
         st.write("### Total Movies Released per Year")
         st.image('resources/imgs/yearly_released_movies_1.png',use_column_width=True)
 
