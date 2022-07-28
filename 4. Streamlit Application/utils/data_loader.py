@@ -8,6 +8,8 @@
 # Data handling dependencies
 import pandas as pd
 import numpy as np
+import streamlit as st
+from pathlib import Path
 
 def load_movie_titles(path_to_movies):
     """Load movie titles from database records.
@@ -28,3 +30,12 @@ def load_movie_titles(path_to_movies):
     df = df.dropna()
     movie_list = df['title'].to_list()
     return movie_list
+
+# Function to load 'Meet the team' page
+def markdown_reader(markdown_file):
+    return Path(markdown_file).read_text()
+
+# Function to load CSS to style the 'Meet the team' page
+def local_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
