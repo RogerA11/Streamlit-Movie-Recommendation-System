@@ -123,23 +123,33 @@ def main():
         st.image('resources/imgs/Recommender_systems.png',use_column_width=True)
 
     if page_selection == "Exploratory Data Analysis":
+        # 1st block
         st.image('resources/imgs/project_blackbox.jpeg',use_column_width=True)
         st.title("Exploratory Data Analysis")
         st.write('The three major features included in our Recommender System Algorithm: \
           \n  - Movie Year Release\n  - Movie Genre\n - Movie Director')
         st.write('Displayed below you can view their respective visualization insights as well \
           as a brief explanation thereof')
-        st.write("### Total Movies Released per Year")
+
+        # 2nd block  
+        st.write("### Movie Year Release")
         st.image('resources/imgs/yearly_released_movies_1.png',use_column_width=True)
-
-
-        st.write("### Distribution of Movie Genres")
+        st.write('Most of the movies in our dataset has been released thoughout the 1990s. \
+          Looking at the graph, the count starts becoming more dense with respect to movies released in our current century. \
+          This is good. It means the distribution of movies with respect to timeline, is relatively even')
+        
+        # 3rd block     
+        st.write("### Movie Genre")
         st.image('resources/imgs/movie_genre_distribution.png',use_column_width=True)
-
-        st.write("### Top 10 Most Popular Movie Directors")
+        st.write('Genres play an important role in movie recommender systems. \
+          Drama movies are maximum in number as compared to Film-Noir and Documentary movies.') 
+          
+        # 4th block
+        st.write("### Movie Director")
         st.image('resources/imgs/popular_movie_directors.png',use_column_width=True)
-
-        st.write("## Insights")
+        st.write('The top 10 directors of movies in our dataset. Directors play an important \
+          role in narrowing down preferences when it comes to recommender systems. The top 4 directors have \
+          a dense amount of movies that have been reviewed.')
 
         
     if page_selection == "About Us":
