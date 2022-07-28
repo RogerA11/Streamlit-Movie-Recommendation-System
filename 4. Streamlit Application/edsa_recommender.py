@@ -49,7 +49,7 @@ def main():
 
     # DO NOT REMOVE the 'Recommender System' option below, however,
     # you are welcome to add more options to enrich your app.
-    page_options = ["Recommender System","Solution Overview", "About Us"]
+    page_options = ["Recommender System", "Solution Overview","Data Insights","About Us"]
 
     # -------------------------------------------------------------------
     # ----------- !! THIS CODE MUST NOT BE ALTERED !! -------------------
@@ -122,9 +122,9 @@ def main():
         audience's viewing.")
         st.image('resources/imgs/Recommender_systems.png',use_column_width=True)
 
-    if page_selection == "Exploratory Data Analysis":
+    if page_selection == "Data Insights":
         st.image('resources/imgs/Recommender_systems.png',use_column_width=True)
-        st.title("Data Insights")
+        st.title("Exploratory Data Analysis")
         st.write("## Total Movies Released per Year")
         st.image('resources/imgs/yearly_released_movies_1.png',use_column_width=True)
 
