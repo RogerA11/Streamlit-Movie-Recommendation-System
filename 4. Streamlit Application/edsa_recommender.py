@@ -214,19 +214,19 @@ def main():
         </style>
         <ul class="card-wrapper">
           <li class="card">
-            <img src='https://images.unsplash.com/photo-1611916656173-875e4277bea6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400' alt=''>
+            <img src='resources/imgs/Njabulo.jpeg' alt=''>
             <h3><a href="">Njabulo Mkhwanazi</a></h3>
             <p>Business Analyst</p>
           </li>
 
           <li class="card">
-            <img src='https://images.unsplash.com/photo-1611916656173-875e4277bea6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400' alt=''>
+            <img src='resources/imgs/Josh.jpeg' alt=''>
             <h3><a href="">Joshan Dooki</a></h3>
             <p>ML Engineer</p>
           </li>
 
           <li class="card">
-            <img src='https://images.unsplash.com/photo-1611916656173-875e4277bea6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400' alt=''>
+            <img src='resources/imgs/Roger.jpeg' alt=''>
             <h3><a href="">Roger Arendse</a></h3>
             <p>Data Scientist</p>
           </li>
@@ -238,13 +238,13 @@ def main():
           </li>
 
             <li class="card">
-            <img src='https://images.unsplash.com/photo-1611916656173-875e4277bea6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400' alt=''>
+            <img src='resources/imgs/Gabrielle.jpeg' alt=''>
             <h3><a href="">Gabrielle Peria</a></h3>
             <p>Statistician</p>
           </li>
 
           <li class="card">
-            <img src='https://images.unsplash.com/photo-1611916656173-875e4277bea6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400' alt=''>
+            <img src='resources/imgs/Wade.jpeg' alt=''>
             <h3><a href="">Wade Jacobs</a></h3>
             <p>Security Specialist</p>
           </li>
