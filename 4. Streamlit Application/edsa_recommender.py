@@ -122,8 +122,23 @@ def main():
         audience's viewing.")
         st.image('resources/imgs/Recommender_systems.png',use_column_width=True)
 
+    if page_selection == "Exploratory Data Analysis":
+        st.image('resources/imgs/Recommender_systems.png',use_column_width=True)
+        st.title("Data Insights")
+        st.write("## Total Movies Released per Year")
+        st.image('resources/imgs/yearly_released_movies_1.png',use_column_width=True)
+
+        st.write("## Distribution of Movie Genres")
+        st.image('resources/imgs/movie_genre_distribution.png',use_column_width=True)
+
+        st.write("## Top 10 Most Popular Movie Directors")
+        st.image('resources/imgs/popular_movie_directors.png',use_column_width=True)
+
+        st.write("## Solutions Overview")
+
+        
     if page_selection == "About Us":
-        st.title("Meet the data science team")
+        st.title("Meet the Data Science Team")
         st.image('resources/imgs/project_blackbox.jpeg',use_column_width=True)
         components.html(
         """
