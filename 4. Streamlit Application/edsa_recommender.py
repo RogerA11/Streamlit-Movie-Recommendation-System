@@ -27,22 +27,20 @@
 """
 # Streamlit dependencies
 import streamlit as st
-import streamlit.components.v1 as components
+from PIL import Image
 
 # Data handling dependencies
 import pandas as pd
 import numpy as np
 
 # Custom Libraries
-from utils.data_loader import load_movie_titles, markdown_reader, local_css
+from utils.data_loader import load_movie_titles
 from recommenders.collaborative_based import collab_model
 from recommenders.content_based import content_model
 
 # Data Loading
 title_list = load_movie_titles('resources/data/movies.csv')
 
-# Load pages
-team = markdown_reader("resources/pages/meet_the_team.html")
 
 # App declaration
 def main():
@@ -131,19 +129,19 @@ def main():
         st.write('Displayed below you can view their respective visualization insights as well \
           as a brief explanation thereof')
 
-        # 2nd block  
+        # 2nd block
         st.write("### Movie Year Release")
         st.image('resources/imgs/yearly_released_movies_1.png',use_column_width=True)
         st.write('Most of the movies in our dataset has been released thoughout the 1990s. \
           Looking at the graph, the count starts becoming more dense with respect to movies released in our current century. \
           This is good. It means the distribution of movies with respect to timeline, is relatively even')
-        
-        # 3rd block     
+
+        # 3rd block
         st.write("### Movie Genre")
         st.image('resources/imgs/movie_genre_distribution.png',use_column_width=True)
         st.write('Genres play an important role in movie recommender systems. \
-          Drama movies are maximum in number as compared to Film-Noir and Documentary movies.') 
-          
+          Drama movies are maximum in number as compared to Film-Noir and Documentary movies.')
+
         # 4th block
         st.write("### Movie Director")
         st.image('resources/imgs/popular_movie_directors.png',use_column_width=True)
@@ -151,139 +149,31 @@ def main():
           role in narrowing down preferences when it comes to recommender systems. The top 4 directors have \
           a dense amount of movies that have been reviewed.')
 
-        
+
     if page_selection == "About Us":
         st.title("Meet the Data Science Team")
         st.image('resources/imgs/project_blackbox.jpeg',use_column_width=True)
-        components.html(
-        """
-        <style media="screen">
-          .card {
-            --card-gradient: rgba(0, 0, 0, 0.8);
-            --card-gradient: #5e9ad9, #e271ad;
-            // --card-gradient: tomato, orange;
-            --card-blend-mode: overlay;
-            // --card-blend-mode: multiply;
-
-            background-color: #fff;
-            border-radius: 0.5rem;
-            box-shadow: 0.05rem 0.1rem 0.3rem -0.03rem rgba(0, 0, 0, 0.45);
-            padding-bottom: 1rem;
-            background-image: linear-gradient(
-              var(--card-gradient),
-              white max(9.5rem, 27vh)
-            );
-            overflow: hidden;
-
-            img {
-              border-radius: 0.5rem 0.5rem 0 0;
-              width: 100%;
-              object-fit: cover;
-              // height: max(10rem, 25vh);
-              max-height: max(10rem, 30vh);
-              aspect-ratio: 4/3;
-              mix-blend-mode: var(--card-blend-mode);
-              // filter: grayscale(100);
-
-              ~ * {
-                margin-left: 1rem;
-                margin-right: 1rem;
-              }
-            }
-
-            > :last-child {
-              margin-bottom: 0;
-            }
-
-            &:hover,
-            &:focus-within {
-              --card-gradient: #24a9d5 max(8.5rem, 20vh);
-            }
-          }
-
-          /* Additional demo display styles */
-          * {
-            box-sizing: border-box;
-          }
-
-          body {
-            display: grid;
-            place-content: center;
-            justify-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 1rem;
-            line-height: 1.5;
-            font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
-              helvetica neue, helvetica, Ubuntu, roboto, noto, segoe ui, arial, sans-serif;
-            color: #444;
-          }
-
-          .card h3 {
-            margin-top: 1rem;
-            font-size: 1.25rem;
-          }
-
-          .card a {
-            color: inherit;
-          }
-
-          .card-wrapper {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(30ch, 1fr));
-            grid-gap: 1.5rem;
-            max-width: 100vw;
-            width: 120ch;
-            padding-left: 1rem;
-            padding-right: 1rem;
-          }
-
-        </style>
-        <ul class="card-wrapper">
-          <li class="card">
-            <img src='resources/imgs/Njabulo.jpeg' alt=''>
-            <h3><a href="">Njabulo Mkhwanazi</a></h3>
-            <p>Business Analyst</p>
-          </li>
-
-          <li class="card">
-            <img src='resources/imgs/Josh.jpeg' alt=''>
-            <h3><a href="">Joshan Dooki</a></h3>
-            <p>ML Engineer</p>
-          </li>
-
-          <li class="card">
-            <img src='resources/imgs/Roger.jpeg' alt=''>
-            <h3><a href="">Roger Arendse</a></h3>
-            <p>Data Scientist</p>
-          </li>
-
-          <li class="card">
-            <img src='https://images.unsplash.com/photo-1611916656173-875e4277bea6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&ixlib=rb-1.2.1&q=80&w=400' alt=''>
-            <h3><a href="">William Hlatshwayo</a></h3>
-            <p>Developer</p>
-          </li>
-
-            <li class="card">
-            <img src='resources/imgs/Gabrielle.jpeg' alt=''>
-            <h3><a href="">Gabrielle Peria</a></h3>
-            <p>Statistician</p>
-          </li>
-
-          <li class="card">
-            <img src='resources/imgs/Wade.jpeg' alt=''>
-            <h3><a href="">Wade Jacobs</a></h3>
-            <p>Security Specialist</p>
-          </li>
+        njabulo = Image.open('resources/imgs/Njabulo.jpg')
+        joshan = Image.open('resources/imgs/Josh.jpg')
+        roger = Image.open('resources/imgs/Roger.jpg')
+        william = Image.open('resources/imgs/William.jpg')
+        gabrielle = Image.open('resources/imgs/Gabrielle.jpg')
+        wade = Image.open('resources/imgs/Wade.jpg')
+        c1,c2,c3 = st.columns(3)
+        with c1:
+            st.image(njabulo, caption="Njabulo Mkhwanazi (Business Analyst)",use_column_width='always')
+            st.image(joshan, caption="Joshan Dooki (ML Engineer)",use_column_width='always')
+        with c2:
+            st.write()
+            st.image(roger,caption="Roger Arendse (Data Scientist)",use_column_width='always')
+            st.image(william,caption="William Hlatshwayo (Developer)",use_column_width='always')
+        with c3:
+            st.write()
+            st.image(gabrielle,caption="Gabrielle Peria (Statistician)",use_column_width='always')
+            st.image(wade, caption="Wade Jacobs (Security Specialist)",use_column_width='always')
 
 
-        </ul>
-        """,
-        height=1000, scrolling=True
-        )
+
         # local_css('resources/pages/html_style.css')
 
     # You may want to add more sections here for aspects such as an EDA,
